@@ -10,8 +10,8 @@ const Container = styled.div`
 
   @media only screen and (max-width: 1280px) {
     margin-bottom: 40px;
-    width: 69%;
-    grid-gap: 6rem;
+    width: 85%;
+    grid-gap: 4rem;
   }
 
   @media only screen and (max-width: 1024px) {
@@ -47,6 +47,7 @@ const Heading = styled.h2`
 
   @media only screen and (max-width: 1024px) {
     text-align: center;
+    line-height: 2;
   }
 `;
 
@@ -108,9 +109,19 @@ const RightFrame = styled.div`
   width: 100%;
   height: auto;
 
+  // @media only screen and (max-width: 1024px) {
+  //   width: 100%;
+  //   height: auto;
+  // }
+
   @media only screen and (max-width: 1024px) {
+    width: 70%;
+    margin-left: 7rem;
+  }
+
+  @media only screen and (max-width: 768px) {
     width: 100%;
-    height: auto;
+    margin-left: 0rem;
   }
 `;
 

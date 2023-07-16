@@ -27,7 +27,7 @@ const ImageContainer = styled.div`
   margin: 5rem;
 
   @media only screen and (max-width: 1460px) {
-    margin: 3rem; 
+    margin: 1rem; 
   }
 
   @media only screen and (max-width: 768px) {
@@ -40,6 +40,16 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   width: 100%;
   height: auto;
+
+  @media only screen and (max-width: 1024px) {
+    width: 80%;
+    margin-left: 4rem;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    margin-left: 0rem;
+  }
 `;
 
 
@@ -50,10 +60,16 @@ const ContentContainer = styled.div`
   margin-right: 3rem;
 
   @media only screen and (max-width: 1280px) {
-    margin-left: 4rem;
+    margin: 1rem;
   }
 
   @media only screen and (max-width: 1024px) {
+    margin: 0.5rem;
+    padding: 0rem;
+  }
+
+
+  @media only screen and (max-width: 768px) {
     margin: 0.2rem;
     padding: 0rem;
   }
@@ -66,8 +82,15 @@ const Title = styled.h3`
   margin-bottom: 1rem;
   padding: 1rem;
 
+  
   @media only screen and (max-width: 1024px) {
     text-align: center;
+    line-height: 2;
+    margin-bottom: 2.5rem;
+  }
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 1rem;
   }
 `;
 
@@ -143,30 +166,49 @@ const TextImage: React.FC<TextImageProps> = ({
 }) => {
   const { imageSrc, title, text, button1, button2 } = data;
   const isImageOnRight = imagePosition === 'right';
+  const isMobile = window.innerWidth < 1024;
 
   return (
     <TextImageContainer>
-      {!isImageOnRight && (
-        <ImageContainer>
-          <Image src={imageSrc} alt={title} />
-        </ImageContainer>
-      )}
-      <ContentContainer>
-        <Title>{title}</Title>
-        <Text dangerouslySetInnerHTML={{ __html: text}} />
-        <ButtonContainer>
-          {button1 && <Button onClick={onClickButton}>{button1}</Button>}
-          {button2 && <Button onClick={onClickButton}>{button2}</Button>}
-        </ButtonContainer>
-      </ContentContainer>
-      {isImageOnRight && (
-        <ImageContainer>
-          <Image src={imageSrc} alt={title} />
-        </ImageContainer>
+      {isMobile ? (
+        <ContentContainer>
+          <Title>{title}</Title>
+          <ImageContainer>
+              <Image src={imageSrc} alt={title} />
+            </ImageContainer>
+          <Text dangerouslySetInnerHTML={{ __html: text }} />
+          <ButtonContainer>
+            {button1 && <Button onClick={onClickButton}>{button1}</Button>}
+            {button2 && <Button onClick={onClickButton}>{button2}</Button>}
+          </ButtonContainer>
+        </ContentContainer>
+      ) : (
+        <>
+          {!isImageOnRight && (
+            <ImageContainer>
+              <Image src={imageSrc} alt={title} />
+            </ImageContainer>
+          )}
+          <ContentContainer>
+            <Title>{title}</Title>
+            <Text dangerouslySetInnerHTML={{ __html: text }} />
+            <ButtonContainer>
+              {button1 && <Button onClick={onClickButton}>{button1}</Button>}
+              {button2 && <Button onClick={onClickButton}>{button2}</Button>}
+            </ButtonContainer>
+          </ContentContainer>
+          {isImageOnRight && (
+            <ImageContainer>
+              <Image src={imageSrc} alt={title} />
+            </ImageContainer>
+          )}
+        </>
       )}
     </TextImageContainer>
-  );
-};
+  )};
+  
+  
+
 
 
 export default TextImage;
