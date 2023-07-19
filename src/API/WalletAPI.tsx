@@ -1,5 +1,12 @@
 import { BrowserProvider, Eip1193Provider } from "ethers/providers";
 import { walletCopy, walletCopyPL } from "../data/WalletData";
+import styled from 'styled-components';
+
+
+const StatusText = styled.h1`
+   font-family: 'PixelText7';
+   font-size: 0.55rem;
+`
 
 
 declare global {
@@ -23,23 +30,33 @@ export const getCurrentWalletConnected = async (language: string) => {
   } catch (err) {
     return {
       address: "",
-      status: language === "english" 
-      ? `😥 ${err instanceof Error ? err.message : walletCopy.errorMessage}` 
-      : `😥 ${err instanceof Error ? err.message : walletCopyPL.errorMessage}`,
+      status: (
+        <StatusText>
+          {language === "english"
+            ? `${err instanceof Error ? err.message : walletCopy.errorMessage}`
+            : `${err instanceof Error ? err.message : walletCopyPL.errorMessage}`}
+        </StatusText>
+      ),
     };
   }
 };
 
 export const connectWallet = async (language: string): Promise<{ address: EthereumAddress | ""; status: string | JSX.Element }> => {
   if (!window.ethereum) {
+
+    const walletNotFoundMessage = 
+    language === 'english' 
+    ? walletCopy.walletNotFoundMessage 
+    : walletCopyPL.walletNotFoundMessage;
+
     return {
       address: "",
       status: (
-        <a target="_blank" href={`https://metamask.io/download.html`}>
-          {language === 'english' 
-          ? walletCopy.walletNotFoundMessage 
-          : walletCopyPL.walletNotFoundMessage}
-        </a>
+        <StatusText>    
+          <a target="_blank" href={`https://metamask.io/download.html`} style={{ textDecoration: 'none' }}>
+            <div dangerouslySetInnerHTML={{ __html: walletNotFoundMessage }} />
+          </a>
+        </StatusText>
       ),
     };
   }
@@ -56,9 +73,13 @@ export const connectWallet = async (language: string): Promise<{ address: Ethere
   } catch (err) {
     return {
       address: "",
-      status: language === "english" 
-      ? `😥 ${err instanceof Error ? err.message : walletCopy.errorMessage}` 
-      : `😥 ${err instanceof Error ? err.message : walletCopyPL.errorMessage}`,
+      status: (
+        <StatusText>
+          {language === "english" 
+            ? `${err instanceof Error ? err.message : walletCopy.errorMessage}` 
+            : `${err instanceof Error ? err.message : walletCopyPL.errorMessage}`}
+        </StatusText>
+      ),
     };
   }
 };

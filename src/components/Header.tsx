@@ -128,6 +128,11 @@ const Text = styled.h1`
   }
 `
 
+const StatusText = styled.h1`
+   font-family: 'PixelText7';
+   font-size: 0.55rem;
+`
+
 
 const LangButton = styled.button`
   font-family: 'PixelFont5';
@@ -226,9 +231,11 @@ const Header: React.FC<HeaderProps> = ({ onLeftButtonClick, onLanguageChange, da
   function addWalletListener() {
     if (!window.ethereum) {
       setStatus(
-        <a target="_blank" href={`https://metamask.io/download.html`}>
-          {data.walletNotFoundMessage}
-        </a>
+        <StatusText>    
+          <a target="_blank" href={`https://metamask.io/download.html`} style={{ textDecoration: 'none' }}>
+            <div dangerouslySetInnerHTML={{ __html: data.walletNotFoundMessage }} />
+          </a>
+        </StatusText>
       );
       return;
     }
@@ -236,9 +243,11 @@ const Header: React.FC<HeaderProps> = ({ onLeftButtonClick, onLanguageChange, da
     window.ethereum.on("accountsChanged", (accounts) => {
       setWallet(accounts[0] || "");
       setStatus(
+        <StatusText> {
         accounts.length > 0 
         ? data.walletReconnectedMessage 
-        : data.walletDisconnectedMessage
+        : data.walletDisconnectedMessage} 
+        </StatusText>
       );
     });
   }

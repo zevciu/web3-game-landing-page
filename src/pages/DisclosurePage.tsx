@@ -117,9 +117,9 @@ const DisclosurePage: React.FC<DisclosurePageProps> = ( {data} ) => {
       <DisclosureText dangerouslySetInnerHTML={{ __html: data.text}}/>
 
       <DisclosureIconContainer>
-      <DisclosureLink href="https://apd.usos.agh.edu.pl/diplomas/attachments/file/download/19311/" target="_blank">
+      {/* <DisclosureLink href="https://apd.usos.agh.edu.pl/diplomas/attachments/file/download/19311/" target="_blank">
               <DisclosureIcon src="/assets/UI/master-thesis-1.png" alt="Master's Thesis" /> 
-      </DisclosureLink>
+      </DisclosureLink> */}
      
       <DisclosureLink href="https://github.com/zevciu/web3-game-landing-page" target="_blank">
               <DisclosureIcon src="/assets/UI/github-large.png" alt="GitHub" />

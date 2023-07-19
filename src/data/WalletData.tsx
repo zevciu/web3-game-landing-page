@@ -1,6 +1,6 @@
 export const walletCopy = {
     errorMessage: "Unknown error occurred",
-    walletNotFoundMessage: "You must install a virtual Ethereum wallet in your browser (e.g. Metamask)",
+    walletNotFoundMessage: "In your browser, you must install a<br>virtual Ethereum wallet (e.g. Metamask)",
     walletConnectedMessage: "🔒 Connected: ",
     walletNotConnectedMessage: "🔑 Connect Wallet",
     walletDisconnectedMessage: "Wallet has been disconnected. Click to reconnect.",
@@ -10,7 +10,7 @@ export const walletCopy = {
 
 export const walletCopyPL = {
     errorMessage: "Wystąpił nieznany błąd",
-    walletNotFoundMessage: "Musisz zainstalować w przeglądarce wirtualny portfel Ethereum (np. Metamask)",
+    walletNotFoundMessage: "Musisz zainstalować w przeglądarce<br>wirtualny portfel Ethereum (np. Metamask)",
     walletConnectedMessage: "🔒 Polaczono: ",
     walletNotConnectedMessage: "🔑 Polacz Portfel",
     walletDisconnectedMessage: "Portfel został rozłączony. Kliknij, aby połączyć się ponownie.",
